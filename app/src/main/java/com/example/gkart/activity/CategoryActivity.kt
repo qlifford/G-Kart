@@ -1,6 +1,7 @@
 package com.example.gkart.activity
 
 import android.os.Bundle
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gkart.R
@@ -11,11 +12,17 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class CategoryActivity : AppCompatActivity() {
+
+    private lateinit var actionBar: ActionBar
     private lateinit var binding: ActivityCategoryBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCategoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        actionBar = supportActionBar!!
+        actionBar.title = "Categories"
 
         getProducts(intent.getStringExtra("cat"))
     }

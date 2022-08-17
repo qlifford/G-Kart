@@ -3,6 +3,7 @@ package com.example.gkart.activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.denzcoskun.imageslider.constants.ScaleTypes
@@ -18,12 +19,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ProductDetailsActivity : AppCompatActivity() {
+
+    private lateinit var actionBar: ActionBar
     private lateinit var binding: ActivityProductDetailsBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProductDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        actionBar = supportActionBar!!
+        actionBar.title = "Product Details"
 
         getProductDetails(intent.getStringExtra("id"))
 

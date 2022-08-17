@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
 import com.example.gkart.databinding.ActivityLoginBinding
 import com.google.firebase.FirebaseException
@@ -14,12 +15,16 @@ import com.google.firebase.auth.PhoneAuthProvider
 import java.util.concurrent.TimeUnit
 
 class LoginActivity : AppCompatActivity() {
+
+    private lateinit var actionBar: ActionBar
     private lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        actionBar = supportActionBar!!
+        actionBar.title = "Login"
 
         binding.btnReg.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
