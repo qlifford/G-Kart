@@ -20,10 +20,13 @@
         <entry key="app/src/main/res/layout/activity_otp_activity.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_otpactivity.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_otpactivity2.xml" value="0.19583333333333333" />
+        <entry key="app/src/main/res/layout/activity_payment.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_product_details.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_reg.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_verify.xml" value="0.19583333333333333" />
+        <entry key="app/src/main/res/layout/app_bar_layout.xml" value="0.46867167919799496" />
+        <entry key="app/src/main/res/layout/content.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/fragment_more.xml" value="0.19583333333333333" />
