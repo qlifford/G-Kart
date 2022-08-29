@@ -1,15 +1,12 @@
 package com.example.gkart.activity
 
 import android.content.Intent
-import android.icu.util.CurrencyAmount
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.gkart.MainActivity
 import com.example.gkart.R
-import com.example.gkart.databinding.ActivityCheckoutBinding
 import com.example.gkart.roomdb.AppDatabase
 import com.example.gkart.roomdb.ProductModel
 import com.google.firebase.firestore.ktx.firestore
@@ -22,31 +19,22 @@ import org.json.JSONObject
 
 
 class CheckoutActivity : AppCompatActivity(), PaymentResultListener {
-
-    private lateinit var actionBar: ActionBar
-    private lateinit var binding: ActivityCheckoutBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCheckoutBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        actionBar = supportActionBar!!
-        actionBar.title = "Checkout"
+        setContentView(R.layout.activity_checkout)
 
         val checkout = Checkout()
-        checkout.setKeyID("<rzp_test_g7sIAPsC1lQGJG>")
+        checkout.setKeyID("<rzp_test_5OV6Pf73VqCq3x>")
 
         val price = intent.getStringExtra("totalCost")
         try {
             val options = JSONObject()
-            options.put("name", "Gkart")
+            options.put("name", "Clifford Otieno")
             options.put("description", "E-commerce App")
             options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.jpg")
             options.put("theme.color", "#FF0057")
             options.put("currency", "INR")
-        //    options.put("amount", (price!!.toInt() * 100)) //pass amount in currency subunits
-            options.put("amount", (price!!.toInt() * 100)) //pass amount in currency subunits
+            options.put("amount", (price!!.toInt()*100)) //pass amount in currency subunits
             options.put("prefill.email", "kwachmareel@gmail.com")
             options.put("prefill.contact", "9876543210")
             checkout.open(this, options)
@@ -63,7 +51,7 @@ class CheckoutActivity : AppCompatActivity(), PaymentResultListener {
 
     private fun uploadData() {
         val id = intent.getStringArrayListExtra("productIds")
-        for (currentId in id!!) {
+        for (currentId in id!!){
             fetchData(currentId)
         }
     }
@@ -78,18 +66,16 @@ class CheckoutActivity : AppCompatActivity(), PaymentResultListener {
                 lifecycleScope.launch(Dispatchers.IO) {
                     dao.deleteProduct(ProductModel(productId))
                 }
-                saveData(
-                    it.getString("productName"),
-                    it.getString("productsP"),
-                    productId
-                )
+                saveData(it.getString("productName"),
+                        it.getString("productsP"),
+                    productId)
             }
     }
 
     private fun saveData(name: String?, price: String?, productId: String) {
-        val preferences = this.getSharedPreferences("user", MODE_PRIVATE)
+       val  preferences = this.getSharedPreferences("user", MODE_PRIVATE)
 
-        val data = hashMapOf<String, Any>()
+        val data = hashMapOf<String,Any>()
         data["name"] = name!!
         data["price"] = price!!
         data["productId"] = productId
@@ -113,8 +99,8 @@ class CheckoutActivity : AppCompatActivity(), PaymentResultListener {
 
     override fun onPaymentError(p0: Int, p1: String?) {
         Toast.makeText(this, "Payment Error", Toast.LENGTH_SHORT).show()
-        startActivity(Intent(this, PaymentActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
+
     }
 }
-
